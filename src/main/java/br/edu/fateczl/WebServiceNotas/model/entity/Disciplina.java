@@ -11,21 +11,21 @@ public class Disciplina {
 
 	@Id
 	@Column
-	private String codigo;
+	private int codigo;
 	@Column
 	private String nome;
 	@Column
 	private String sigla;
 	@Column
 	private String turno;
-	@Column
+	@Column(name = "num_aulas")
 	private int numAulas;
 
-	public String getCodigo() {
+	public int getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(String codigo) {
+	public void setCodigo(int codigo) {
 		this.codigo = codigo;
 	}
 
