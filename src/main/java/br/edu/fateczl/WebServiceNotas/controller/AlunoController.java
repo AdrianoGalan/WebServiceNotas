@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -54,9 +55,9 @@ public class AlunoController {
 	}
 
 	@CrossOrigin
-	@DeleteMapping("/aluno")
-	public ResponseEntity<String> deleteAluno(@Valid @RequestBody Aluno a) {
-		aRep.delete(a);
+	@DeleteMapping("/aluno/{ra}")
+	public ResponseEntity<String> deleteAluno(@PathVariable(value = "ra") int ra) {
+		aRep.deleteById(ra);
 		return ResponseEntity.ok().body("Jogador deletado com sucesso");
 	}
 
