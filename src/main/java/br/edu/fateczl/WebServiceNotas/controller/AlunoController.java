@@ -7,8 +7,10 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,7 @@ public class AlunoController {
 		super();
 	}
 
+	@CrossOrigin
 	@GetMapping("/aluno")
 	public List<Aluno> getAllAlunos() {
 
@@ -41,6 +44,20 @@ public class AlunoController {
 		aRep.save(a);
 		return ResponseEntity.ok("Aluno adicionado");
 
+	}
+	
+	@CrossOrigin
+	@PutMapping("/aluno")
+	public ResponseEntity<String> updatetAluno(@Valid @RequestBody Aluno a) {
+		aRep.save(a);
+		return ResponseEntity.ok().body("Jogador atualizado com sucesso");
+	}
+
+	@CrossOrigin
+	@DeleteMapping("/aluno")
+	public ResponseEntity<String> deleteAluno(@Valid @RequestBody Aluno a) {
+		aRep.delete(a);
+		return ResponseEntity.ok().body("Jogador deletado com sucesso");
 	}
 
 }
