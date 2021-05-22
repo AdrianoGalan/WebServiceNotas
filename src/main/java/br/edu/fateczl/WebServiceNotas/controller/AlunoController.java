@@ -40,6 +40,15 @@ public class AlunoController {
 	}
 	
 	@CrossOrigin
+	@GetMapping("/aluno/{ra}")
+	public Aluno getAlunosByRa(@PathVariable(value = "ra") int ra) {
+
+		Aluno Aluno = aRep.alunoByRa(ra);
+		return Aluno;
+
+	}
+	
+	@CrossOrigin
 	@PostMapping("/aluno")
 	public ResponseEntity<String> insertAluno(@Valid @RequestBody Aluno a) {
 		aRep.save(a);
