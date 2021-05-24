@@ -18,7 +18,7 @@ public class Disciplina {
 	private String sigla;
 	@Column
 	private String turno;
-	@Column(name = "num_aulas")
+	@Column(name = "NUM_AULAS")
 	private int numAulas;
 
 	public int getCodigo() {
