@@ -1,12 +1,20 @@
 package br.edu.fateczl.WebServiceNotas.model.entity;
 
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "DISCIPLINA")
+@NamedNativeQuery(
+		name = "Disciplina.disciplinaByCodigo",
+		query = "SELECT CODIGO, NOME, SIGLA, TURNO, NUM_AULAS "
+				+ "FROM DISCIPLINA "
+				+ "WHERE CODIGO = (?1)",
+		resultClass = Disciplina.class)
 public class Disciplina {
 
 	@Id
