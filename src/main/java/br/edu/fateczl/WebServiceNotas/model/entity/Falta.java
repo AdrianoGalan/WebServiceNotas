@@ -19,13 +19,9 @@ public class Falta {
 	private Aluno aluno;
 
 	@Id
-	@OneToOne(targetEntity = Disciplina.class)
-	@JoinColumn(name = "codigo_disciplina")
-	private Disciplina disciplina;
-
-	@Id
-	@Column(name = "data_falta")
-	private String dataFalta;
+	@OneToOne(targetEntity = Aula.class)
+	@JoinColumn(name = "ID_AULA")
+	private Aula aula;
 
 	@Column
 	private int falta;
@@ -38,20 +34,12 @@ public class Falta {
 		this.aluno = aluno;
 	}
 
-	public Disciplina getDisciplina() {
-		return disciplina;
+	public Aula getAula() {
+		return aula;
 	}
 
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-
-	public String getDataFalta() {
-		return dataFalta;
-	}
-
-	public void setDataFalta(String dataFalta) {
-		this.dataFalta = dataFalta;
+	public void setAula(Aula aula) {
+		this.aula = aula;
 	}
 
 	public int getFalta() {
@@ -64,7 +52,7 @@ public class Falta {
 
 	@Override
 	public String toString() {
-		return "Falta [aluno=" + aluno + ", disciplina=" + disciplina + ", data=" + dataFalta + ", falta=" + falta + "]";
+		return "Falta [aluno=" + aluno + ", aula=" + aula + ", falta=" + falta + "]";
 	}
 
 }

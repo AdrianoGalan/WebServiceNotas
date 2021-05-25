@@ -9,17 +9,16 @@ public class FaltaId implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private Aluno aluno;
-	private Disciplina disciplina;
-	private String dataFalta;
+	private Aula aula;
 
 	public FaltaId() {
 	}
 
-	public FaltaId(Aluno aluno, Disciplina disciplina, String dataFalta) {
+	public FaltaId(Aluno aluno, Aula aula) {
 		super();
 		this.aluno = aluno;
-		this.disciplina = disciplina;
-		this.dataFalta = dataFalta;
+		this.aula = aula;
+
 	}
 
 	public Aluno getAluno() {
@@ -30,20 +29,12 @@ public class FaltaId implements Serializable {
 		this.aluno = aluno;
 	}
 
-	public Disciplina getDisciplina() {
-		return disciplina;
+	public Aula getAula() {
+		return aula;
 	}
 
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-
-	public String getDataFalta() {
-		return dataFalta;
-	}
-
-	public void setDataFalta(String dataFalta) {
-		this.dataFalta = dataFalta;
+	public void setAula(Aula aula) {
+		this.aula = aula;
 	}
 
 }
