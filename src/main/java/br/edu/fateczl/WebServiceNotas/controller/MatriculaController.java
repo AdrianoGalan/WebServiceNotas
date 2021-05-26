@@ -29,9 +29,9 @@ public class MatriculaController {
 	
 	@CrossOrigin
 	@GetMapping("/matricula/{codigoDisciplina}")
-	public List<Matricula> getAlunosByRa(@PathVariable(value = "codigoDisciplina") int codigoDisciplina) {
+	public List<Aluno> getAlunosByRa(@PathVariable(value = "codigoDisciplina") int codigoDisciplina) {
 
-		List<Matricula> listAluno = mRep.listAlunoByCodigoDisciplina(codigoDisciplina);
+		List<Aluno> listAluno = mRep.listAlunoByCodigoDisciplina(codigoDisciplina);
 		return listAluno;
 
 	}
