@@ -11,8 +11,9 @@ import javax.persistence.Table;
 @Table(name = "ALUNO")
 @NamedNativeQuery(
 		name = "Aluno.alunoByRa",
-		query = "SELECT RA, NOME"
-				+ " FROM FN_ALUNO_RA(?1)",
+		query = "SELECT RA, NOME "
+				+ "FROM ALUNO "
+				+ "WHERE RA = (?1)",
 		resultClass = Aluno.class)
 public class Aluno {
 
