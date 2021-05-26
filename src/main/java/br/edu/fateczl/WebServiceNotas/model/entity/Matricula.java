@@ -16,6 +16,10 @@ import javax.persistence.Table;
 		name = "Matricula.listAlunoByCodigoDisciplina",
 		query = "SELECT ra, nome from fn_matriculado(?1) ",
 		resultClass = Aluno.class)
+@NamedNativeQuery(
+		name = "Matricula.listDisciplinaByRaAluno",
+		query = "SELECT CODIGO ,NOME, SIGLA, TURNO, NUM_AULAS from FN_DISCIPLINA_ALUNO(?1) ",
+		resultClass = Disciplina.class)
 public class Matricula {
 
 	@Id

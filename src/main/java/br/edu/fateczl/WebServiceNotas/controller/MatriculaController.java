@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.fateczl.WebServiceNotas.model.entity.Aluno;
+import br.edu.fateczl.WebServiceNotas.model.entity.Disciplina;
 import br.edu.fateczl.WebServiceNotas.model.entity.Matricula;
 import br.edu.fateczl.WebServiceNotas.repository.MatriculaRepository;
 
@@ -26,9 +27,9 @@ public class MatriculaController {
 		List<Matricula> listaMatricula = mRep.findAll();
 		return listaMatricula;
 	}
-	
+
 	@CrossOrigin
-	@GetMapping("/matricula/{codigoDisciplina}")
+	@GetMapping("/disciplina/aluno/{codigoDisciplina}")
 	public List<Aluno> getAlunosByRa(@PathVariable(value = "codigoDisciplina") int codigoDisciplina) {
 
 		List<Aluno> listAluno = mRep.listAlunoByCodigoDisciplina(codigoDisciplina);
@@ -36,4 +37,13 @@ public class MatriculaController {
 
 	}
 	
+	@CrossOrigin
+	@GetMapping("/disciplina/list/{raAluno}")
+	public List<Disciplina> getDisciplinaByRa(@PathVariable(value = "raAluno") int raAluno) {
+
+		List<Disciplina> lisDisciplina = mRep.listDisciplinaByRaAluno(raAluno);
+		return lisDisciplina;
+
+	}
+
 }
