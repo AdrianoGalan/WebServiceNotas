@@ -11,34 +11,34 @@ public class MatriculaId implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private Aluno aluno;
-	private Disciplina disciplina;
+	private int aluno;
+	private int disciplina;
 	private int anoSemestre;
 
 	public MatriculaId() {
 		super();
 	}
 
-	public MatriculaId(Aluno aluno, Disciplina disciplina, int anoSemestre) {
+	public MatriculaId(int aluno, int disciplina, int anoSemestre) {
 		super();
 		this.aluno = aluno;
 		this.disciplina = disciplina;
 		this.anoSemestre = anoSemestre;
 	}
 
-	public Aluno getAluno() {
+	public int getAluno() {
 		return aluno;
 	}
 
-	public void setAluno(Aluno aluno) {
+	public void setAluno(int aluno) {
 		this.aluno = aluno;
 	}
 
-	public Disciplina getDisciplina() {
+	public int getDisciplina() {
 		return disciplina;
 	}
 
-	public void setDisciplina(Disciplina disciplina) {
+	public void setDisciplina(int disciplina) {
 		this.disciplina = disciplina;
 	}
 

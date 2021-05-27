@@ -8,32 +8,32 @@ public class FaltaId implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private Aluno aluno;
-	private Aula aula;
+	private int aluno;
+	private int aula;
 
 	public FaltaId() {
 	}
 
-	public FaltaId(Aluno aluno, Aula aula) {
+	public FaltaId(int aluno, int aula) {
 		super();
 		this.aluno = aluno;
 		this.aula = aula;
 
 	}
 
-	public Aluno getAluno() {
+	public int getAluno() {
 		return aluno;
 	}
 
-	public void setAluno(Aluno aluno) {
+	public void setAluno(int aluno) {
 		this.aluno = aluno;
 	}
 
-	public Aula getAula() {
+	public int getAula() {
 		return aula;
 	}
 
-	public void setAula(Aula aula) {
+	public void setAula(int aula) {
 		this.aula = aula;
 	}
 
