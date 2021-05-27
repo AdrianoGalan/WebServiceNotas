@@ -2,9 +2,12 @@ package br.edu.fateczl.WebServiceNotas.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -23,13 +26,13 @@ import javax.persistence.Table;
 public class Matricula {
 
 	@Id
-	@OneToOne(targetEntity = Aluno.class)
-	@JoinColumn(name = "RA_ALUNO")
+	@ManyToOne(targetEntity = Aluno.class)
+	@JoinColumn(name = "ra_aluno", referencedColumnName = "ra")
 	private Aluno aluno;
 
 	@Id
-	@OneToOne(targetEntity = Disciplina.class)
-	@JoinColumn(name = "CODIGO_DISCIPLINA")
+	@ManyToOne(targetEntity = Disciplina.class)
+	@JoinColumn(name = "CODIGO_DISCIPLINA", referencedColumnName = "codigo")
 	private Disciplina disciplina;
 
 	@Id

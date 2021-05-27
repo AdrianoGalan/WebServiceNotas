@@ -6,29 +6,34 @@ import javax.persistence.Id;
 import javax.persistence.NamedNativeQuery;
 import javax.persistence.Table;
 
-
 @Entity
 @Table(name = "ALUNO")
-@NamedNativeQuery(
-		name = "Aluno.alunoByRa",
-		query = "SELECT RA, NOME "
-				+ "FROM ALUNO "
-				+ "WHERE RA = (?1)",
-		resultClass = Aluno.class)
+@NamedNativeQuery(name = "Aluno.alunoByRa", query = "SELECT RA, NOME " + "FROM ALUNO "
+		+ "WHERE RA = (?1)", resultClass = Aluno.class)
 public class Aluno {
 
 	@Id
 	@Column
-	private int ra;
-	
+	private Integer ra;
+
 	@Column
 	private String nome;
 
-	public int getRa() {
+	public Aluno() {
+		super();
+	}
+
+	public Aluno(Integer ra, String nome) {
+		super();
+		this.ra = ra;
+		this.nome = nome;
+	}
+
+	public Integer getRa() {
 		return ra;
 	}
 
-	public void setRa(int ra) {
+	public void setRa(Integer ra) {
 		this.ra = ra;
 	}
 

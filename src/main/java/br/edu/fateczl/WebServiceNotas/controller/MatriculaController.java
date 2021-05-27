@@ -41,7 +41,7 @@ public class MatriculaController {
 		return listAluno;
 
 	}
-	
+
 	@CrossOrigin
 	@GetMapping("/disciplina/list/{raAluno}")
 	public List<Disciplina> getDisciplinaByRa(@PathVariable(value = "raAluno") int raAluno) {
@@ -50,11 +50,14 @@ public class MatriculaController {
 		return lisDisciplina;
 
 	}
-	
+
 	@CrossOrigin
 	@PostMapping("/disciplina/add")
 	public ResponseEntity<String> insertMatricula(@Valid @RequestBody Matricula m) {
+		System.out.println("Esta aki ..... " + m);
+
 		mRep.save(m);
+
 		return ResponseEntity.ok("Aluno matriculado");
 
 	}

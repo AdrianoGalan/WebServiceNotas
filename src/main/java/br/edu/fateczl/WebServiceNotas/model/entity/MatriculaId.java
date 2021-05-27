@@ -2,6 +2,8 @@ package br.edu.fateczl.WebServiceNotas.model.entity;
 
 import java.io.Serializable;
 
+
+
 public class MatriculaId implements Serializable {
 
 	/**

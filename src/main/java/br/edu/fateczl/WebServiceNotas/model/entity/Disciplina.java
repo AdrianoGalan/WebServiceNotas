@@ -1,6 +1,5 @@
 package br.edu.fateczl.WebServiceNotas.model.entity;
 
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
@@ -9,17 +8,13 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "DISCIPLINA")
-@NamedNativeQuery(
-		name = "Disciplina.disciplinaByCodigo",
-		query = "SELECT CODIGO, NOME, SIGLA, TURNO, NUM_AULAS "
-				+ "FROM DISCIPLINA "
-				+ "WHERE CODIGO = (?1)",
-		resultClass = Disciplina.class)
+@NamedNativeQuery(name = "Disciplina.disciplinaByCodigo", query = "SELECT CODIGO, NOME, SIGLA, TURNO, NUM_AULAS "
+		+ "FROM DISCIPLINA " + "WHERE CODIGO = (?1)", resultClass = Disciplina.class)
 public class Disciplina {
 
 	@Id
 	@Column
-	private int codigo;
+	private Integer codigo;
 	@Column
 	private String nome;
 	@Column
@@ -27,13 +22,26 @@ public class Disciplina {
 	@Column
 	private String turno;
 	@Column(name = "NUM_AULAS")
-	private int numAulas;
+	private Integer numAulas;
 
-	public int getCodigo() {
+	public Disciplina() {
+		super();
+	}
+
+	public Disciplina(Integer codigo, String nome, String sigla, String turno, Integer numAulas) {
+		super();
+		this.codigo = codigo;
+		this.nome = nome;
+		this.sigla = sigla;
+		this.turno = turno;
+		this.numAulas = numAulas;
+	}
+
+	public Integer getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(Integer codigo) {
 		this.codigo = codigo;
 	}
 
@@ -61,11 +69,11 @@ public class Disciplina {
 		this.turno = turno;
 	}
 
-	public int getNumAulas() {
+	public Integer getNumAulas() {
 		return numAulas;
 	}
 
-	public void setNumAulas(int numAulas) {
+	public void setNumAulas(Integer numAulas) {
 		this.numAulas = numAulas;
 	}
 
