@@ -7,13 +7,14 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+
 import org.springframework.web.bind.annotation.GetMapping;
+
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.edu.fateczl.WebServiceNotas.model.entity.Aluno;
 import br.edu.fateczl.WebServiceNotas.model.entity.Nota;
 import br.edu.fateczl.WebServiceNotas.repository.NotaRepository;
 
@@ -25,17 +26,28 @@ public class NotaController {
 	private NotaRepository nRep;
 	
 	@CrossOrigin
-	@GetMapping("/nota")
+	@GetMapping("/notas")
 	public List<Nota> getAllNotas(){
+		System.out.println("listar notas");
 		List<Nota> listaNotas = nRep.findAll();
 		return listaNotas;
 	}
 	
 	@CrossOrigin
-	@PostMapping("/nota/add")
+	@PostMapping("/notas/add")
 	public ResponseEntity<String> insertNota(@Valid @RequestBody Nota n) {
+		System.out.println(n);
 		nRep.save(n);
 		return ResponseEntity.ok("Nota adicionada");
+
+	}
+	
+	@CrossOrigin
+	@PutMapping("/notas/add")
+	public ResponseEntity<String> atualizatNota(@Valid @RequestBody Nota n) {
+		System.out.println(n + "adualiza");
+		nRep.save(n);
+		return ResponseEntity.ok("Nota atualizada");
 
 	}
 

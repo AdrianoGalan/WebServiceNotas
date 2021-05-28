@@ -83,4 +83,18 @@ public class Disciplina {
 				+ ", numAulas=" + numAulas + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
+		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((numAulas == null) ? 0 : numAulas.hashCode());
+		result = prime * result + ((sigla == null) ? 0 : sigla.hashCode());
+		result = prime * result + ((turno == null) ? 0 : turno.hashCode());
+		return result;
+	}
+	
+	
+
 }
