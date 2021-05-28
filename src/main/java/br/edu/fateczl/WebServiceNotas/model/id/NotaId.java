@@ -2,9 +2,6 @@ package br.edu.fateczl.WebServiceNotas.model.id;
 
 import java.io.Serializable;
 
-import br.edu.fateczl.WebServiceNotas.model.entity.Aluno;
-import br.edu.fateczl.WebServiceNotas.model.entity.Avaliacao;
-import br.edu.fateczl.WebServiceNotas.model.entity.Disciplina;
 
 public class NotaId implements Serializable {
 
