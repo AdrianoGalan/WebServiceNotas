@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -50,12 +51,20 @@ public class MatriculaController {
 		return lisDisciplina;
 
 	}
+	
+	@CrossOrigin
+	@DeleteMapping("/disciplina/matricula/del")
+	public ResponseEntity<String> deleleDisciplinaByRa(@Valid @RequestBody Matricula m) {
+
+		mRep.delete(m);
+		return ResponseEntity.ok("matricula cancelada");
+
+	}
 
 	@CrossOrigin
 	@PostMapping("/disciplina/add")
 	public ResponseEntity<String> insertMatricula(@Valid @RequestBody Matricula m) {
-		System.out.println("Esta aki ..... " + m);
-
+	
 		mRep.save(m);
 
 		return ResponseEntity.ok("Aluno matriculado");

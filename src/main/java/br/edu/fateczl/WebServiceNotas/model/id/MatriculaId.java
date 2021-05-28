@@ -1,4 +1,4 @@
-package br.edu.fateczl.WebServiceNotas.model.entity;
+package br.edu.fateczl.WebServiceNotas.model.id;
 
 import java.io.Serializable;
 

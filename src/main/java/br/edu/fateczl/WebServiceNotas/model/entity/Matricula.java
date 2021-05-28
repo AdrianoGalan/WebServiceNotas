@@ -12,6 +12,8 @@ import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import br.edu.fateczl.WebServiceNotas.model.id.MatriculaId;
+
 @Entity
 @Table(name = "MATRICULA")
 @IdClass(MatriculaId.class)
