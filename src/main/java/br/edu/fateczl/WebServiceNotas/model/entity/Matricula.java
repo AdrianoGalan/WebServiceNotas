@@ -25,6 +25,10 @@ import br.edu.fateczl.WebServiceNotas.model.id.MatriculaId;
 		name = "Matricula.listDisciplinaByRaAluno",
 		query = "SELECT CODIGO ,NOME, SIGLA, TURNO, NUM_AULAS from FN_DISCIPLINA_ALUNO(?1) ",
 		resultClass = Disciplina.class)
+@NamedNativeQuery(
+		name = "Matricula.listAlunoComNota",
+		query = "SELECT id, ra, nome, p1, p2, p3, t, pp from FN_MATRICULADO_NOTA(?1) ",
+		resultClass = AlunoComNota.class)
 public class Matricula {
 
 	@Id
