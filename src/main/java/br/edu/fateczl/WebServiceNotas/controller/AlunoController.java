@@ -60,7 +60,7 @@ public class AlunoController {
 	@PutMapping("/aluno")
 	public ResponseEntity<String> updatetAluno(@Valid @RequestBody Aluno a) {
 		aRep.save(a);
-		return ResponseEntity.ok().body("Jogador atualizado com sucesso");
+		return ResponseEntity.ok().body("aluno atualizado com sucesso");
 	}
 
 	@CrossOrigin

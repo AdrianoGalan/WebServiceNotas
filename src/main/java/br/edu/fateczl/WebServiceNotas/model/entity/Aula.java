@@ -6,11 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.NamedNativeQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name = "Aulas")
+@NamedNativeQuery(name = "Aula.aulasDataByCodigoDisciplina", 
+				 query = "SELECT ID, CODIGO_DISCIPLINA, DATA, HORARIO"
+						+ " FROM FN_DATA_AULAS(?1)", resultClass = Aula.class)
 public class Aula {
 
 	@Id
