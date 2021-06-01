@@ -28,7 +28,6 @@ public class NotaController {
 	@CrossOrigin
 	@GetMapping("/notas")
 	public List<Nota> getAllNotas(){
-		System.out.println("listar notas");
 		List<Nota> listaNotas = nRep.findAll();
 		return listaNotas;
 	}
@@ -36,7 +35,6 @@ public class NotaController {
 	@CrossOrigin
 	@PostMapping("/notas/add")
 	public ResponseEntity<String> insertNota(@Valid @RequestBody Nota n) {
-		System.out.println(n);
 		nRep.save(n);
 		return ResponseEntity.ok("Nota adicionada");
 
@@ -45,7 +43,6 @@ public class NotaController {
 	@CrossOrigin
 	@PutMapping("/notas/add")
 	public ResponseEntity<String> atualizatNota(@Valid @RequestBody Nota n) {
-		System.out.println(n + "adualiza");
 		nRep.save(n);
 		return ResponseEntity.ok("Nota atualizada");
 
