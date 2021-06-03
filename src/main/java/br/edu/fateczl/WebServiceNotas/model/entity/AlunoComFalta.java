@@ -3,30 +3,26 @@ package br.edu.fateczl.WebServiceNotas.model.entity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.NamedNativeQuery;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "ALUNO")
-@NamedNativeQuery(name = "Aluno.alunoByRa", query = "SELECT RA, NOME " + "FROM ALUNO "
-		+ "WHERE RA = (?1) ORDER BY NOME", resultClass = Aluno.class)
-public class Aluno {
+public class AlunoComFalta {
 
 	@Id
 	@Column
+	private Integer id;
+	@Column
 	private Integer ra;
-
 	@Column
 	private String nome;
+	@Column
+	private Integer falta;
 
-	public Aluno() {
-		super();
+	public Integer getId() {
+		return id;
 	}
 
-	public Aluno(Integer ra, String nome) {
-		super();
-		this.ra = ra;
-		this.nome = nome;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public Integer getRa() {
@@ -45,9 +41,17 @@ public class Aluno {
 		this.nome = nome;
 	}
 
+	public Integer getFalta() {
+		return falta;
+	}
+
+	public void setFalta(Integer falta) {
+		this.falta = falta;
+	}
+
 	@Override
 	public String toString() {
-		return "Aluno [ra=" + ra + ", nome=" + nome + "]";
+		return "AlunoComFalta [id=" + id + ", ra=" + ra + ", nome=" + nome + ", falta=" + falta + "]";
 	}
 
 }

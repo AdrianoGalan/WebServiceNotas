@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.fateczl.WebServiceNotas.model.entity.Aluno;
+import br.edu.fateczl.WebServiceNotas.model.entity.AlunoComFalta;
 import br.edu.fateczl.WebServiceNotas.model.entity.AlunoComNota;
 import br.edu.fateczl.WebServiceNotas.model.entity.Disciplina;
 import br.edu.fateczl.WebServiceNotas.model.entity.Matricula;
@@ -49,6 +50,18 @@ public class MatriculaController {
 	public List<AlunoComNota> getAlunosComNotaByCodigo(@PathVariable(value = "codigoDisciplina") int codigoDisciplina) {
 		
 		List<AlunoComNota> listAluno = mRep.listAlunoComNota(codigoDisciplina);
+		return listAluno;
+		
+	}
+	
+	@CrossOrigin
+	@GetMapping("/disciplina/aluno/falta/{codigoDisciplina}/{data}")
+	public List<AlunoComFalta> getAlunosComFaltaByCodigo(@PathVariable(value = "codigoDisciplina") int codigoDisciplina, @PathVariable(value = "data") String data) {
+		
+		System.out.println(codigoDisciplina);
+		System.out.println(data);
+		
+		List<AlunoComFalta> listAluno = mRep.listAlunoComFalta(codigoDisciplina, data);
 		return listAluno;
 		
 	}

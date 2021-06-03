@@ -6,7 +6,9 @@ import javax.persistence.Id;
 import javax.persistence.NamedNativeQuery;
 
 @Entity
-@NamedNativeQuery(name = "RelatorioNota.listRelatorioNotaCodigoDisciplina", query = "SELECT ID, RA_ALUNO, NOME_ALUNO, P1, P2, P3, T,MEDIA_FINAL, NUM_FALTA, SITUACAO from FN_NOTASTUMA(?1)", resultClass = RelatorioNota.class)
+@NamedNativeQuery(name = "RelatorioNota.listRelatorioNotaCodigoDisciplina", 
+							query = "SELECT ID, RA_ALUNO, NOME_ALUNO, P1, P2, P3, T,MEDIA_FINAL, NUM_FALTA, SITUACAO from FN_NOTASTUMA(?1)", 
+							resultClass = RelatorioNota.class)
 public class RelatorioNota {
 
 	@Id

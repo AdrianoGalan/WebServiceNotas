@@ -9,16 +9,15 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.fateczl.WebServiceNotas.model.entity.Disciplina;
 import br.edu.fateczl.WebServiceNotas.model.entity.RelatorioNota;
-import br.edu.fateczl.WebServiceNotas.repository.RelatorioRepository;
+import br.edu.fateczl.WebServiceNotas.repository.RelatorioNotaRepository;
 
 @RestController
 @RequestMapping("/")
-public class RelatorioController {
+public class RelatorioNotaController {
 
 	@Autowired
-	private RelatorioRepository rRep;
+	private RelatorioNotaRepository rRep;
 
 	@CrossOrigin
 	@GetMapping("/relatorio/{codigo}")
