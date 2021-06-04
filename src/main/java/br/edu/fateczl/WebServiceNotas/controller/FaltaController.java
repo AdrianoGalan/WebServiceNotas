@@ -13,8 +13,6 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
-import br.edu.fateczl.WebServiceNotas.model.entity.Aluno;
 import br.edu.fateczl.WebServiceNotas.model.entity.Falta;
 import br.edu.fateczl.WebServiceNotas.repository.FaltaRepository;
 

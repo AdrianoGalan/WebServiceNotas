@@ -2,14 +2,11 @@ package br.edu.fateczl.WebServiceNotas.model.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.ForeignKey;
 import javax.persistence.Id;
 import javax.persistence.IdClass;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedNativeQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import br.edu.fateczl.WebServiceNotas.model.id.MatriculaId;
