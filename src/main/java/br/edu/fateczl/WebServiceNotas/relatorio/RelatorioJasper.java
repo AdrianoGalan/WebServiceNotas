@@ -1,60 +1,71 @@
 package br.edu.fateczl.WebServiceNotas.relatorio;
 
-import java.io.ByteArrayOutputStream;
-import java.io.IOException;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.OutputStream;
 import java.sql.Connection;
+import java.sql.SQLException;
+import java.util.HashMap;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.servlet.ServletException;
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.ResourceUtils;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JRExporter;
-import net.sf.jasperreports.engine.JRExporterParameter;
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.export.JRPdfExporter;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimplePdfExporterConfiguration;
+import net.sf.jasperreports.engine.JasperReport;
 
-@SuppressWarnings("deprecation")
+
 public class RelatorioJasper {
-
-	private String nomeArquivo;
-	private Map<String, Object> parametros;
-	private Connection connection;
-
-	public RelatorioJasper(String nomeArquivo, Map<String, Object> parametros, Connection connection2) {
-		this.nomeArquivo = nomeArquivo;
-		this.parametros = parametros;
-		this.connection = connection2;
-	}
-
-	public byte[] geraPDParaOutputStream() throws IOException {
-
-		ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-
-		try {
-			JasperPrint jasperPrint = JasperFillManager.fillReport(this.nomeArquivo, this.parametros, this.connection);
-
-			JRPdfExporter exporter = new JRPdfExporter();
-			exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
-			exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(outputStream));
-
-			SimplePdfExporterConfiguration configuration = new SimplePdfExporterConfiguration();
-			exporter.setConfiguration(configuration);
-			exporter.exportReport();
-
-			outputStream.close();
-			return outputStream.toByteArray();
-
-		} catch (JRException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+	
+	 @Autowired
+	 private Connection connection;
+	
+		
+		
+		public void getExportManager(String codigoDisciplina, OutputStream os) throws JRException {
+			
+			System.err.println(connection);
+			
+			JasperPrint jasperPrint = getJasperPrint(codigoDisciplina);
+			JasperExportManager.exportReportToPdfStream(jasperPrint, os);
+			
 		}
-		return outputStream.toByteArray();
-	}
+		
+		private JasperPrint getJasperPrint(String codigoDisciplina) {
+			
+			
+			
+			
+			
+			try {
+				 
+				
+
+				File file = ResourceUtils.getFile("/WebServiceNotas/src/main/java/br/edu/fateczl/WebServiceNotas/relatorio/RelatorioJasper.java");
+				
+				JasperReport jasperReport = JasperCompileManager.compileReport(file.getAbsolutePath());
+				
+				Map<String, Object> parameters = new HashMap<>();
+				parameters.put("DISCIPLINA", codigoDisciplina);
+				
+				
+				JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, connection);
+				return jasperPrint;
+				
+				
+			} catch (FileNotFoundException | JRException e) {
+				System.err.println(e.getStackTrace());
+				return null;
+			}
+			
+			
+		}
+	
 
 }

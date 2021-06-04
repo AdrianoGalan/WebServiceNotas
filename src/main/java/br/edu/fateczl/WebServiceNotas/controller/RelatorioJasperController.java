@@ -2,16 +2,10 @@
 package br.edu.fateczl.WebServiceNotas.controller;
 
 import java.io.IOException;
+import java.io.OutputStream;
 import java.sql.Connection;
-import java.util.HashMap;
+import java.sql.SQLException;
 
-import javax.persistence.EntityManager;
-import javax.servlet.ServletException;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-
-import org.hibernate.Session;
-import org.hibernate.engine.spi.SessionImplementor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,54 +14,40 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import br.edu.fateczl.WebServiceNotas.relatorio.RelatorioJasper;
+import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/")
 public class RelatorioJasperController {
 	
+
 	@Autowired
-    private HttpServletRequest request;
-	
-	@CrossOrigin
-	@GetMapping("/relatorio/pasper/{codigo}")
-	public void Certificado(@PathVariable("codigo") int codigo, HttpServletResponse response) throws ServletException, IOException, JRException {
-		
-		
-		entityManager.getTransaction().begin();
-		java.sql.Connection connection = entityManager.unwrap(java.sql.Connection.class);
+	private Connection connection;
 	
 	
+	@GetMapping("/relatorio/jasper/{codigo}")
+	public void generateRelatorio(HttpServletResponse response, @PathVariable(value = "codigo") String codigo) throws IOException, JRException, SQLException{
+	
+		RelatorioJasper rJ = new RelatorioJasper();
 		
-		String nome = "c:/teste/reportMaquinaData";
-        JasperCompileManager.compileReportToFile(nome+".jrxml");
-
-
-        HashMap<String, Object> parametros = new HashMap<String, Object>();
-        parametros.put("DISCIPLINA", codigo);
-        
-      
-
-        RelatorioJasper geradorRelatorio = new RelatorioJasper(nome+".jasper", parametros, connection);
-        byte [] data = geradorRelatorio.geraPDParaOutputStream();
-
-        streamReport(response, data, "report.pdf");
+		response.setContentType("application/pdf");
+		response.setHeader("Content-Disposition", String.format("attachment; filename=\"RelatorioMediaTurma.pdf\""));
+	
+		try {
+			OutputStream out = response.getOutputStream();
+			rJ.getExportManager(codigo, out);
+			
+			
+			System.out.println(out.toString());
+		} catch (IOException | JRException e) {
+			System.out.println(e.getMessage());
+		}
+		
 	}
 	
-	 protected void streamReport(HttpServletResponse response, byte[] data, String name)
-	            throws IOException {
-
-	        response.setContentType("application/pdf");
-	        response.setHeader("Content-disposition", "attachment; filename=" + name);
-	        response.setContentLength(data.length);
-
-	        response.getOutputStream().write(data);
-	        response.getOutputStream().flush();
-	    }
-	 
-
-
+	
 
 
 }
