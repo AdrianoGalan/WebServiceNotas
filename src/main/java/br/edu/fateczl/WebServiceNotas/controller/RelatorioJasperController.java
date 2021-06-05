@@ -7,13 +7,15 @@ import java.sql.Connection;
 import java.sql.SQLException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.edu.fateczl.WebServiceNotas.relatorio.RelatorioJasper;
+import br.edu.fateczl.WebServiceNotas.service.JasperService;
+
 import javax.servlet.http.HttpServletResponse;
 import net.sf.jasperreports.engine.JRException;
 
@@ -24,27 +26,20 @@ public class RelatorioJasperController {
 	
 
 	@Autowired
-	private Connection connection;
+	private JasperService service;
 	
 	
-	@GetMapping("/relatorio/jasper/{codigo}")
-	public void generateRelatorio(HttpServletResponse response, @PathVariable(value = "codigo") String codigo) throws IOException, JRException, SQLException{
+	@GetMapping("/relatorio/jasper/{nome}/{codigo}")
+	public void generateRelatorio(HttpServletResponse response, @PathVariable(value = "codigo") int codigo, @PathVariable(value = "nome") String nome) throws IOException{
 	
-		RelatorioJasper rJ = new RelatorioJasper();
+		service.addParams("DISCIPLINA", codigo);
 		
-		response.setContentType("application/pdf");
-		response.setHeader("Content-Disposition", String.format("attachment; filename=\"RelatorioMediaTurma.pdf\""));
-	
-		try {
-			OutputStream out = response.getOutputStream();
-			rJ.getExportManager(codigo, out);
-			
-			
-			System.out.println(out.toString());
-		} catch (IOException | JRException e) {
-			System.out.println(e.getMessage());
-		}
+		byte[] bytes = service.exportarPdf(nome);
+		response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+		response.setHeader("Content-disposition", "inline; filename=relatorio.pdf");
+		response.getOutputStream().write(bytes);
 		
+	
 	}
 	
 	
